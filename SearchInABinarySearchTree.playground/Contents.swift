@@ -46,7 +46,17 @@ You should return this subtree:
 class Solution {
     func searchBST(_ root: TreeNode?, _ val: Int) -> TreeNode? {
      
+              if root == nil{
+        return nil
+      }else if root?.val == val {
+        return root
+      }else if root!.val > val{
+        return self.searchBST(root?.left, val)
+        
+      }else{
+        return self.searchBST(root?.right, val)
 
+      }
 
     }
 }
