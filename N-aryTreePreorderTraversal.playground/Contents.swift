@@ -53,18 +53,17 @@ class Solution {
 
 
 
-let one = Node(1)
-let five = Node(5)
-let three = Node(3)
-let four = Node(4)
-let six = Node(6)
-let two = Node(2)
+//let one = Node(1)
+//let five = Node(5)
+//let three = Node(3)
+//let four = Node(4)
+//let six = Node(6)
+//let two = Node(2)
 
-one.children.append(three)
-one.children.append(two)
-one.children.append(four)
-three.children.append(five)
-three.children.append(six)
+
+
+
+
 
 //
 //one.traversalPreOrder {
