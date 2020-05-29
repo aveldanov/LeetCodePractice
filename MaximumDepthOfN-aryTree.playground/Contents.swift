@@ -33,20 +33,12 @@ public class Node {
 
 class Solution {
   func maxDepth(_ root: Node?) -> Int {
-//    print("BOOM")
     var maxim = 0
-    
     if root == nil{
       return 0
     }
     root?.children.forEach{
-    
-//      print($0.val)
-//      print("")
-
-      
       maxim = max(maxim, maxDepth($0))
-    
     }
     return 1 + max(0, maxim)
   }
