@@ -7,6 +7,17 @@
           self.val = val
    
       }
+    
+    func traversePreOrder(visit:(Int)->Void){
+      visit(val)
+      
+      left?.traversePreOrder(visit: visit)
+      right?.traversePreOrder(visit: visit)
+      
+      
+    }
+    
+    
   }
  
 /*
@@ -22,14 +33,37 @@
  */
 
 
-//class Solution {
-//    func maxDepth(_ root: TreeNode?) -> Int {
+class Solution {
+    func maxDepth(_ root: TreeNode?) -> Int {
+    
+      if root == nil{
+        return 0
+      }
+      
+      return 1 + max(maxDepth(root?.left), maxDepth(root?.right))
+    }
+}
+
+
+
+
+let three = TreeNode(3)
+let nine = TreeNode(9)
+let twenty = TreeNode(20)
+let fifteen = TreeNode(15)
+let seven = TreeNode(7)
+
+three.left = nine
+three.right = twenty
+twenty.left = fifteen
+twenty.right = seven
+
+
 //
-//    }
+//three.traversePreOrder { print($0)
 //}
 
 
+let solution = Solution()
 
-
-let one = TreeNode(3)
-let nine = TreeNode(9)
+print(solution.maxDepth(three))
