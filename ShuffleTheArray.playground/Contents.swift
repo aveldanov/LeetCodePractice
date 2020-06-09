@@ -24,11 +24,12 @@ class Solution {
         
       var newArr = [Int]()
       
+      
       for i in 0...n-1{
-    
+
         newArr.append(nums[i])
         newArr.append(nums[n+i])
-        
+
       }
       
       
