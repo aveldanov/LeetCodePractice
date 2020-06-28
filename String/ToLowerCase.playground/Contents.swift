@@ -29,11 +29,7 @@ class Solution {
       
 //      print(arr.map{upprange.contains(Int($0.unicodeScalars.first!.value)) ? helperToChar(Int($0.unicodeScalars.first!.value)+32) : helperToChar(Int($0.unicodeScalars.first!.value))
 //        }.joined(separator: ""))
-//
 
-      
-//      print("b".utf8CString.first!)
-//      print(arr.map{$0.lowercased()}.joined(separator: ""))
       
       return arr.map{upprange.contains(Int($0.unicodeScalars.first!.value)) ? helperToChar(Int($0.unicodeScalars.first!.value)+32) : helperToChar(Int($0.unicodeScalars.first!.value))
       }.joined(separator: "")
