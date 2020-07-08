@@ -22,6 +22,22 @@
 
 class Solution {
     func canMakeArithmeticProgression(_ arr: [Int]) -> Bool {
-        
+    
+      let newArr = arr.sorted()
+      let const = newArr[1]-newArr[0]
+      print(const)
+      for i in 0...newArr.count-2{
+        if (newArr[i+1]-newArr[i]) != const{
+          return false
+        }
+      }
+      return true
     }
 }
+
+
+
+let solution = Solution()
+
+
+print(solution.canMakeArithmeticProgression([3,5,1]))
