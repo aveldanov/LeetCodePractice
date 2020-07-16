@@ -1,6 +1,4 @@
 
-  
-
 import Foundation
 
 public class ListNode {
@@ -11,6 +9,7 @@ public class ListNode {
       public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
   }
  
+
 class Solution {
   var sum = 0
   var power = 0
