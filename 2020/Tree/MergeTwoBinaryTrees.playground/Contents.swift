@@ -60,7 +60,7 @@ class Solution {
             
         }else{
             
-            newNode = t1 == nil ? t2 : t1
+            newNode = t1 ?? t2
             
         }
         
@@ -119,6 +119,7 @@ one1.traversPreOrder{
     print($0)
 }
 print("HELLO")
+
 two2.traversPreOrder{
     print($0)
 }
@@ -127,6 +128,7 @@ two2.traversPreOrder{
 let solution = Solution()
 
 let result = solution.mergeTrees(one1, two2)
+print("HELLO")
 
 result?.traversPreOrder{
     print($0)
