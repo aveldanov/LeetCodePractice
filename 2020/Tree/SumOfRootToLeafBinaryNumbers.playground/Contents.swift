@@ -59,43 +59,39 @@
   }
  
 class Solution {
-
     func sumRootToLeaf(_ root: TreeNode?) -> Int {
-        bineryToDecCalculate(root, current: 0)
+       return bineryToDecCalculate(root, sum: 0)
     }
     
-    func bineryToDecCalculate(_ root: TreeNode?, current: Int) -> Int{
+    func bineryToDecCalculate(_ root: TreeNode?, sum: Int) -> Int{
         if root == nil{
             return 0
         }
-        var current = current << 1 //
-        current += root!.val
-        
-        if root!.left == nil && root!.right == nil {
-            return current
+        let sum = sum*2 + root!.val
+        if root!.left == nil && root!.right == nil{
+          return sum
         }
-        return bineryToDecCalculate(root!.left, current: current) + bineryToDecCalculate(root!.right, current: current)
-        
+        return bineryToDecCalculate(root!.left, sum: sum) + bineryToDecCalculate(root!.right, sum: sum)
     }
 }
 
 
 
 let one = TreeNode(1)
-let two = TreeNode(0)
-let three = TreeNode(0)
-let four = TreeNode(1)
-let five = TreeNode(1)
-let six = TreeNode(0)
-let seven = TreeNode(1)
+let two = TreeNode(1)
+//let three = TreeNode(0)
+//let four = TreeNode(1)
+//let five = TreeNode(1)
+//let six = TreeNode(0)
+//let seven = TreeNode(1)
 
 
 one.left = two
-two.left = three
-two.right = four
-one.right = five
-five.left = six
-five.right = seven
+//two.left = three
+//two.right = four
+//one.right = five
+//five.left = six
+//five.right = seven
 
 
 
