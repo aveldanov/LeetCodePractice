@@ -28,3 +28,39 @@
 
 
 
+//  Definition for singly-linked list.
+  public class ListNode {
+      public var val: Int
+      public var next: ListNode?
+      public init() { self.val = 0; self.next = nil; }
+      public init(_ val: Int) { self.val = val; self.next = nil; }
+      public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+  }
+ 
+class Solution {
+    func middleNode(_ head: ListNode?) -> ListNode? {
+        var count = 0
+        var current = head
+        let newNode:ListNode
+        while current != nil {
+            count+=1
+            current = current?.next
+        }
+        newNode = ListNode((count/2)+1)
+        return newNode
+    }
+}
+
+
+let six = ListNode(6, nil)
+let five = ListNode(5, six)
+let four = ListNode(4, five)
+let three = ListNode(3, four)
+let two = ListNode(2,three)
+let head = ListNode(1, two)
+
+
+let solution = Solution()
+
+
+print(solution.middleNode(head))
