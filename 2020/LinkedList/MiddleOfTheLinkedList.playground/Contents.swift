@@ -35,32 +35,74 @@
       public init() { self.val = 0; self.next = nil; }
       public init(_ val: Int) { self.val = val; self.next = nil; }
       public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+    
+    
+    func displayItems(_ head:ListNode){
+        var current = head
+        while current != nil {
+            print(current.val)
+            current = current.next!
+        }
+        
+    }
+    
   }
  
 class Solution {
     func middleNode(_ head: ListNode?) -> ListNode? {
+        var middle = 0
         var count = 0
         var current = head
-        let newNode:ListNode
         while current != nil {
             count+=1
             current = current?.next
         }
-        newNode = ListNode((count/2)+1)
+        
+        middle = count/2
+ 
+        var newNode = ListNode()
+
+            var node = head // 1->2->3->4->5->6
+            while middle > 0 {
+                node = node?.next //  node = 1->2->3->4->5->6 ===  3,2,1
+                middle = middle - 1
+//                print("POSITION", middle)
+//                print("POS NODE", node?.val)
+        }
+        newNode = node!  // head(3) -> (4->5->6)
+            
+        
+        
+        print(newNode.val)
+        print(newNode.next?.val)
+        print(newNode.next?.next?.val)
+        print(newNode.next?.next?.next?.val)
+
+        
         return newNode
     }
+
+    
 }
 
 
-let six = ListNode(6, nil)
-let five = ListNode(5, six)
-let four = ListNode(4, five)
-let three = ListNode(3, four)
-let two = ListNode(2,three)
-let head = ListNode(1, two)
+let ten = ListNode(100, nil)
+let nine = ListNode(99, ten)
+let eight = ListNode(88, nine)
+let seven = ListNode(77, eight)
+let six = ListNode(66, seven)
+let five = ListNode(55, six)
+let four = ListNode(44, five)
+let three = ListNode(33, four)
+let two = ListNode(22,three)
+let head = ListNode(11, two)
 
 
 let solution = Solution()
 
 
-print(solution.middleNode(head))
+let result = solution.middleNode(head)
+print(result)
+//result?.displayItems(head)
+
+//[65,66,26,77,96,86,11,21,13,80]
