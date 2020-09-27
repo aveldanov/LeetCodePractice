@@ -33,17 +33,27 @@ class Solution {
         var j = 0
         var i = 0
         
+        print(grid[0].count)
         
         while j < grid.count{
-            if grid[i][j] < 0 {
-                count = count + grid.count - i
+            print("j", j)
+            print("i",i)
+            
+            if grid[j][i] < 0 {
+               print(grid[j][i])
+                count = count + grid[0].count - i
                 j += 1
                 i = 0
-            }else if i < grid.count-1{
+                print("count", count)
+            }else if i < grid[0].count-1{
+                print("i2",i)
+
                 i += 1
             }else{
                 j += 1
+                i = 0
             }
+            print("")
         }
         
         
@@ -54,4 +64,4 @@ class Solution {
 
 let solution = Solution()
 
-print(solution.countNegatives([[1,-1],[-1,-1]]))
+print(solution.countNegatives([[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]))
