@@ -25,7 +25,8 @@ import Foundation
 class Solution {
     func subtractProductAndSum(_ n: Int) -> Int {
       
-      let arr = String(n).compactMap{Int(String($0))}
+//      let arr = String(n).compactMap{Int(String($0))}
+        let arr = Array(n)
       return arr.reduce(1, *) - arr.reduce(0, +)
     }
 }

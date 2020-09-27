@@ -34,11 +34,32 @@
 
 class Solution {
     func balancedStringSplit(_ s: String) -> Int {
+        if s.count == 0{
+            return 0
+        }
         var count = 0
+        var r = 0
+        var l = 0
+        var arrayString = Array(s)
+        
+        for i in 0..<s.count{
+            if arrayString[i] == "L"{
+                
+                l += 1
+            }else {
+                r += 1
+            }
+            
+            if r == l{
+                count += 1
+            }
+            
+        }
         
         
-        print(s.reduce{$0})
-        return 4
+        
+        
+        return count
     }
 }
 
