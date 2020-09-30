@@ -84,64 +84,64 @@ func removeDuplicates(_ nums:  [Int]) -> Int {
  */
 
 
-func threeSum(_ nums: [Int]) -> [[Int]] {
-    var newArr = [[Int]]()
-    
-    guard nums.count>=3 else {
-        return newArr
-    }
-    
-    let sortedArr = nums.sorted()
-    print(nums.sorted())
-    
-    for i in 0..<sortedArr.count{
-        
-        //removing duplicates
-        if i != 0, sortedArr[i] == sortedArr[i-1]{
-            continue
-        }
-        
-        var left = i+1
-        var right = sortedArr.count-1
-        
-        
-        
-        while left<right{
-            let sum = sortedArr[i]+sortedArr[left]+sortedArr[right]
-            print("i",i)
-            print("i",sortedArr[i])
-
-            print("left", left)
-            print("left", sortedArr[left])
-
-            print("right",right)
-            print("right",sortedArr[right])
-
-            print(sum)
-            print("")
-            
-            if sum > 0{
-                right-=1
-            }
-            else if sum < 0{
-                left+=1
-            }else{
-
-                if left-1 > i, sortedArr[left] == sortedArr[left-1]{
-                    left += 1
-                }else{
-                    newArr.append([sortedArr[i],sortedArr[left],sortedArr[right]])
-                    left += 1
-                }
-            }
-        }
-    }
-    
-    print(newArr)
-    return [[]]
-}
-
-
-
-
-print(threeSum([-1,0,1,2,-1,-4]))
+//func threeSum(_ nums: [Int]) -> [[Int]] {
+//    var newArr = [[Int]]()
+//
+//    guard nums.count>=3 else {
+//        return newArr
+//    }
+//
+//    let sortedArr = nums.sorted()
+//    print(nums.sorted())
+//
+//    for i in 0..<sortedArr.count{
+//
+//        //removing duplicates
+//        if i != 0, sortedArr[i] == sortedArr[i-1]{
+//            continue
+//        }
+//
+//        var left = i+1
+//        var right = sortedArr.count-1
+//
+//
+//
+//        while left<right{
+//            let sum = sortedArr[i]+sortedArr[left]+sortedArr[right]
+//            print("i",i)
+//            print("i",sortedArr[i])
+//
+//            print("left", left)
+//            print("left", sortedArr[left])
+//
+//            print("right",right)
+//            print("right",sortedArr[right])
+//
+//            print(sum)
+//            print("")
+//
+//            if sum > 0{
+//                right-=1
+//            }
+//            else if sum < 0{
+//                left+=1
+//            }else{
+//
+//                if left-1 > i, sortedArr[left] == sortedArr[left-1]{
+//                    left += 1
+//                }else{
+//                    newArr.append([sortedArr[i],sortedArr[left],sortedArr[right]])
+//                    left += 1
+//                }
+//            }
+//        }
+//    }
+//
+//    print(newArr)
+//    return [[]]
+//}
+//
+//
+//
+//
+//print(threeSum([-1,0,1,2,-1,-4]))
