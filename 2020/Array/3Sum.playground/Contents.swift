@@ -29,7 +29,6 @@ class Solution {
             return newArr
         }
         let sortedArr = nums.sorted()
-        print(sortedArr)
         for i in 0..<sortedArr.count{
             
             if i != 0, sortedArr[i] == sortedArr[i-1]{

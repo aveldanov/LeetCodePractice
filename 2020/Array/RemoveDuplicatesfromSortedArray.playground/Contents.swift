@@ -50,11 +50,7 @@ class Solution {
                 j+=1
                 nums[j] = nums[i]
             }
-            
-            
         }
-        
-            
         return j+1
     }
 }

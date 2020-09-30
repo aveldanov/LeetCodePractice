@@ -31,11 +31,7 @@ class Solution {
                 currentSum -= nums[left]
                 left+=1
             }
-            
-            
         }
-        
-        
         return minSize == Int.max ? 0 : minSize
     }
 }
