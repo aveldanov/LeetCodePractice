@@ -97,22 +97,19 @@ class Solution {
        return sum
         
     }
-    func convertToDecimal(){
-        let arr = [1,0,0,1,0,0,1,1,1,0,0,0,0,0,0]
-        var sum = 0
-        
-        for i in arr{
-             sum = sum*2 + i
-
-            
-        }
-        print("SUM", sum)
-        
-        
-    }
     
-
-
+//    func convertToDecimal(){
+//        let arr = [1,0,0,1,0,0,1,1,1,0,0,0,0,0,0]
+//        var sum = 0
+//
+//        for i in arr{
+//             sum = sum*2 + i
+//        }
+//        print("SUM", sum)
+//
+//
+//    }
+    
 }
 
 

@@ -55,7 +55,6 @@ class Solution {
           sum += (root?.left?.right!.val)!
         }
         
-        
       }
       if ((root?.right) != nil){
         if ((root?.right?.left) != nil){
