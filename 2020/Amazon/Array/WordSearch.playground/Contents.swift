@@ -30,7 +30,7 @@ class Solution {
         var board = board
         for i in 0..<board.count{
             for j in 0..<board[i].count{
-                if board[i][j] == Array(word)[0] && dfs(board: &board, i: i, j: j, count: 0, word: word){
+                if dfs(board: &board, i: i, j: j, count: 0, word: word){
                     return true
                 }
             }
@@ -75,7 +75,7 @@ print(solution.exist([
                         ["S","F","C","S"],
                         ["A","D","E","E"]],
                      
-                     "ASFDES"))
+                     "SEE"))
 
 
 /*

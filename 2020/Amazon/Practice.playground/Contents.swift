@@ -1,105 +1,42 @@
 /*
- Given the root of a binary tree, return its maximum depth.
+ We have a list of points on the plane.  Find the K closest points to the origin (0, 0).
 
- A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+ (Here, the distance between two points on a plane is the Euclidean distance.)
 
-  
+ You may return the answer in any order.  The answer is guaranteed to be unique (except for the order that it is in.)
+
 
  Example 1:
 
-
- Input: root = [3,9,20,null,null,15,7]
- Output: 3
+ Input: points = [[1,3],[-2,2]], K = 1
+ Output: [[-2,2]]
+ Explanation:
+ The distance between (1, 3) and the origin is sqrt(10).
+ The distance between (-2, 2) and the origin is sqrt(8).
+ Since sqrt(8) < sqrt(10), (-2, 2) is closer to the origin.
+ We only want the closest K = 1 points from the origin, so the answer is just [[-2,2]].
  Example 2:
 
- Input: root = [1,null,2]
- Output: 2
- Example 3:
-
- Input: root = []
- Output: 0
- Example 4:
-
- Input: root = [0]
- Output: 1
- 
+ Input: points = [[3,3],[5,-1],[-2,4]], K = 2
+ Output: [[3,3],[-2,4]]
+ (The answer [[-2,4],[3,3]] would also be accepted.)
  */
-
-public class TreeNode {
-    public var val: Int
-    public var left: TreeNode?
-    public var right: TreeNode?
-    public init() { self.val = 0; self.left = nil; self.right = nil; }
-    public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
-    public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
-        self.val = val
-        self.left = left
-        self.right = right
-    }
-    
-}
 
 class Solution {
-    func maxDepth(_ root: TreeNode?) -> Int{
-        if root == nil{
-            return 0
+    func kClosest(_ points: [[Int]], _ K: Int) -> [[Int]] {
+        guard points.count >= K && K>0 else {
+            return [[]]
         }
-        var stackTree = [TreeNode]()
-        var stackCount = [Int]()
-        
-        stackTree.append(root!)
-        stackCount.append(1)
-        var maxCount = 0
-        var count = 0
-        var current: TreeNode?
-        
-        while !stackTree.isEmpty {
-            current = stackTree.removeFirst()
-            count = stackCount.removeFirst()
-            maxCount = max(count, maxCount)
-            if current?.left != nil{
-                stackTree.append((current?.left)!)
-                stackCount.append(count+1)
-            }
-            if current?.right != nil{
-                stackTree.append((current?.right)!)
-                stackCount.append(count+1)
-            }
+        let sortedArr = points.sorted {
+            ($0[0]*$0[0]+$0[1]*$0[1]) < ($1[0]*$1[0]+$1[1]*$1[1])
         }
-        return maxCount
+
+        return Array(sortedArr[0..<K])
+        
     }
 }
-
-
-
-
-/*
- 10
- / \
- 5   15
- / \    \
- 3    7    18
- 
- 
- */
-
-let ten = TreeNode(10)
-let five = TreeNode(5)
-let fithteen = TreeNode(15)
-let three = TreeNode(3)
-let eighting = TreeNode(18)
-let seven = TreeNode(7)
-let four = TreeNode(4)
-
-
-ten.left = five
-ten.right = fithteen
-five.left = three
-five.right = seven
-fithteen.right = eighting
-seven.left = four
 
 
 let solution = Solution()
 
-solution.maxDepth(ten)
+solution.kClosest([[3,3],[5,-1],[-2,4]], 2)
