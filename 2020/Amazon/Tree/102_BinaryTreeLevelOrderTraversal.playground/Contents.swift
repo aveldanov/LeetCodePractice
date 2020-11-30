@@ -39,26 +39,32 @@ public class TreeNode {
 
 
 class Solution {
-    
-    
     func levelOrder(_ root: TreeNode?) -> [[Int]] {
+   
         var stackTree = [TreeNode]()
-        var stackVal = [Int]()
         var result = [[Int]]()
-        stackTree.append(root!)
-        
-        var count = 0
-        while !stackTree.isEmpty {
-            let current = stackTree.removeFirst()
-            stackVal.append(current.val)
-            count+=1
-            if 
-            
-            
+        var currentLevel = [Int]()
+
+        if root == nil{
+            return result
         }
-        
-        
-        return [[]]
+        stackTree.append(root!)
+        while !stackTree.isEmpty {
+           let count = stackTree.count
+            for i in 0..<count{
+                let current = stackTree.removeFirst()
+                currentLevel.append(current.val)
+                if current.left != nil{
+                    stackTree.append(current.left!)
+                }
+                if current.right != nil{
+                    stackTree.append(current.right!)
+                }
+            }
+            result.append(currentLevel)
+            currentLevel = []
+        }
+        return result
     }
 }
 
@@ -93,6 +99,8 @@ seven.left = four
 
 let solution = Solution()
 
-ten.traversTreeInOrder{
-    print($0)
-}
+//ten.traversTreeInOrder{
+//    print($0)
+//}
+
+solution.levelOrder(ten)
