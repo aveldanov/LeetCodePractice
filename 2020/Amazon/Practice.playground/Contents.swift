@@ -1,42 +1,73 @@
 /*
- We have a list of points on the plane.  Find the K closest points to the origin (0, 0).
+ Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
 
- (Here, the distance between two points on a plane is the Euclidean distance.)
+ Follow up: The overall run time complexity should be O(log (m+n)).
 
- You may return the answer in any order.  The answer is guaranteed to be unique (except for the order that it is in.)
-
+  
 
  Example 1:
 
- Input: points = [[1,3],[-2,2]], K = 1
- Output: [[-2,2]]
- Explanation:
- The distance between (1, 3) and the origin is sqrt(10).
- The distance between (-2, 2) and the origin is sqrt(8).
- Since sqrt(8) < sqrt(10), (-2, 2) is closer to the origin.
- We only want the closest K = 1 points from the origin, so the answer is just [[-2,2]].
+ Input: nums1 = [1,3], nums2 = [2]
+ Output: 2.00000
+ Explanation: merged array = [1,2,3] and median is 2.
  Example 2:
 
- Input: points = [[3,3],[5,-1],[-2,4]], K = 2
- Output: [[3,3],[-2,4]]
- (The answer [[-2,4],[3,3]] would also be accepted.)
+ Input: nums1 = [1,2], nums2 = [3,4]
+ Output: 2.50000
+ Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+ Example 3:
+
+ Input: nums1 = [0,0], nums2 = [0,0]
+ Output: 0.00000
+ Example 4:
+
+ Input: nums1 = [], nums2 = [1]
+ Output: 1.00000
+ Example 5:
+
+ Input: nums1 = [2], nums2 = []
+ Output: 2.00000
  */
 
-class Solution {
-    func kClosest(_ points: [[Int]], _ K: Int) -> [[Int]] {
-        guard points.count >= K && K>0 else {
-            return [[]]
-        }
-        let sortedArr = points.sorted {
-            ($0[0]*$0[0]+$0[1]*$0[1]) < ($1[0]*$1[0]+$1[1]*$1[1])
-        }
 
-        return Array(sortedArr[0..<K])
+class Solution {
+    func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
+        guard nums1.count <= nums2.count else {
+            return findMedianSortedArrays(nums2, nums1)
+        }
+        let x = nums1.count
+        let y = nums2.count
         
+        var left = 0
+        var right = x
+        while left<=right {
+            let partX = (left+right)/2
+            let partY = ((x+y+1)/2) - partX
+            
+            let maxLeftX = partX == 0 ? Int.min : nums1[partX-1]
+            let minRightX = partX == x ? Int.max : nums1[partX]
+            let maxLeftY = partY == 0 ? Int.min : nums2[partY-1]
+            let minRightY = partY == y ? Int.max : nums2[partY]
+            print(maxLeftX,minRightX,maxLeftY,minRightY)
+
+            if maxLeftX<=minRightY && maxLeftY<=minRightX{
+                if (x+y)%2==0{
+                    return Double(max(maxLeftY,maxLeftX)+min(minRightX,minRightY))/2
+                }else{
+                    Double(max(maxLeftY, maxLeftX))
+                }
+            }else if maxLeftX > minRightY{
+                right = partX - 1
+            }else{
+                left = partX + 1
+            }
+        }
+        return -1.0
     }
 }
 
 
+
 let solution = Solution()
 
-solution.kClosest([[3,3],[5,-1],[-2,4]], 2)
+solution.findMedianSortedArrays([1,2], [3,4])
