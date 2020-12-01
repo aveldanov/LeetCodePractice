@@ -47,7 +47,7 @@
 
 class Solution {
     func romanToInt(_ s: String) -> Int {
-        var dict = [
+        let dict: [Character:Int] = [
             "M" : 1000,
             "D": 500,
             "C": 100,
@@ -57,27 +57,31 @@ class Solution {
             "I": 1
         ]
         
-        var current = 0
+        var sum = 0
         var j = 0
         let sArr = Array(s)
-
-//        print(dict.sorted{$0.1 > $1.1})
-//        print(sArr[0])
-        let sortedDict = dict.sorted{$0.1 > $1.1}
-//        print(sortedDict[Character(sArr[0])])
+        
         while j<sArr.count{
-            
-            if sArr[j] == sortedDict.map{Character($0.0)}.first{
-//                current+=sortedDict[sArr[j]]
+            let currentInt = dict[sArr[j]]
+            var nextInt = 0
+            if j < sArr.count-1{
+                nextInt = dict[sArr[j+1]]!
             }
-      
+            
+            if currentInt! >= nextInt{
+                sum += currentInt!
+            }else{
+                sum += nextInt - currentInt!
+                j+=1
+            }
+          j+=1
         }
         
         
-        return current
+        return sum
     }
 }
 
 let solution = Solution()
 
-solution.romanToInt("MCMXCIV")
+solution.romanToInt("III")
