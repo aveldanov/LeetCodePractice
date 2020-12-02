@@ -45,7 +45,7 @@ class Solution {
     }
     
     func helper(_ nums: [Int], index:Int, target: Int, current: Int, arr: inout [Int], result: inout [[Int]]){
-        print(current,target)
+        print(current,target, arr)
         if target == current {
             result.append(arr)
             return
@@ -66,4 +66,4 @@ class Solution {
 let solution = Solution()
 
 
-solution.combinationSum([10,1,2,7,6,1,5], 8)
+solution.combinationSum([2,3,6,7], 7)

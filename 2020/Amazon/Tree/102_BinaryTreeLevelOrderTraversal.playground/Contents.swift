@@ -36,38 +36,64 @@ public class TreeNode {
     
 }
 
+//
+//
+//class Solution {
+//    func levelOrder(_ root: TreeNode?) -> [[Int]] {
+//
+//        var stackTree = [TreeNode]()
+//        var result = [[Int]]()
+//        var currentLevel = [Int]()
+//
+//        if root == nil{
+//            return result
+//        }
+//        stackTree.append(root!)
+//        while !stackTree.isEmpty {
+//           let count = stackTree.count
+//            for i in 0..<count{
+//                let current = stackTree.removeFirst()
+//                currentLevel.append(current.val)
+//                if current.left != nil{
+//                    stackTree.append(current.left!)
+//                }
+//                if current.right != nil{
+//                    stackTree.append(current.right!)
+//                }
+//            }
+//            result.append(currentLevel)
+//            currentLevel = []
+//        }
+//        return result
+//    }
+//}
+
 
 
 class Solution {
     func levelOrder(_ root: TreeNode?) -> [[Int]] {
-   
-        var stackTree = [TreeNode]()
         var result = [[Int]]()
-        var currentLevel = [Int]()
-
-        if root == nil{
-            return result
-        }
-        stackTree.append(root!)
-        while !stackTree.isEmpty {
-           let count = stackTree.count
-            for i in 0..<count{
-                let current = stackTree.removeFirst()
-                currentLevel.append(current.val)
-                if current.left != nil{
-                    stackTree.append(current.left!)
-                }
-                if current.right != nil{
-                    stackTree.append(current.right!)
-                }
-            }
-            result.append(currentLevel)
-            currentLevel = []
-        }
+        var height = Int()
+        helper(root,&result , height)
         return result
     }
-}
+    
+    func helper(_ root: TreeNode?, _ result:inout[[Int]], _ height:Int){
+        print(height)
 
+        if root == nil{
+            return
+        }
+        if height >= result.count{
+            result.append([])
+        }
+        print(root!.val, height)
+        result[height].append(root!.val)
+        helper(root?.left, &result, height+1)
+        helper(root?.right, &result, height+1)
+  
+    }
+}
 
 /*
    10
