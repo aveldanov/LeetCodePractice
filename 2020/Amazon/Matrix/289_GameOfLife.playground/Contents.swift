@@ -32,81 +32,152 @@
  */
 
 
-class Solution {
-    func gameOfLife(_ board: inout [[Int]]) -> [[Int]]{
-        let column = board.count
-        let row = board[0].count
-//        var board = board
-        for i in 0..<column{
-            for j in 0..<row {
-                if board[i][j] == 1{
-//                    print("good",board)
-                    var neighbors = 0
-                    neighbors += checkCell(&board, i: i-1, j: j-1)
-                    neighbors += checkCell(&board, i: i-1, j: j)
-                    neighbors += checkCell(&board, i: i-1, j: j+1)
-                    neighbors += checkCell(&board, i: i, j: j-1)
-                    neighbors += checkCell(&board, i: i, j: j+1)
-                    neighbors += checkCell(&board, i: i+1, j: j-1)
-                    neighbors += checkCell(&board, i: i+1, j: j)
-                    neighbors += checkCell(&board, i: i+1, j: j+1)
-                    
-                    if neighbors < 2 || neighbors > 3{
-                        board[i][j]  = 666666 //dies
-                    }
-                    print("good",neighbors)
-//                    print("")
-                }else{
-                    var neighbors = 0
-//                    print("bad",board)
+//class Solution {
+//    func gameOfLife(_ board: inout [[Int]]) -> [[Int]]{
+//        let column = board.count
+//        let row = board[0].count
+////        var board = board
+//        for i in 0..<column{
+//            for j in 0..<row {
+//                if board[i][j] == 1{
+////                    print("good",board)
+//                    var neighbors = 0
+//                    neighbors += checkCell(&board, i: i-1, j: j-1)
+//                    neighbors += checkCell(&board, i: i-1, j: j)
+//                    neighbors += checkCell(&board, i: i-1, j: j+1)
+//                    neighbors += checkCell(&board, i: i, j: j-1)
+//                    neighbors += checkCell(&board, i: i, j: j+1)
+//                    neighbors += checkCell(&board, i: i+1, j: j-1)
+//                    neighbors += checkCell(&board, i: i+1, j: j)
+//                    neighbors += checkCell(&board, i: i+1, j: j+1)
+//
+//                    if neighbors < 2 || neighbors > 3{
+//                        board[i][j]  = 666666 //dies
+//                    }
+//                    print("good",neighbors)
+////                    print("")
+//                }else{
+//                    var neighbors = 0
+////                    print("bad",board)
+//
+//                    neighbors += checkCell(&board, i: i-1, j: j-1)
+//                    neighbors += checkCell(&board, i: i-1, j: j)
+//                    neighbors += checkCell(&board, i: i-1, j: j+1)
+//                    neighbors += checkCell(&board, i: i, j: j-1)
+//                    neighbors += checkCell(&board, i: i, j: j+1)
+//                    neighbors += checkCell(&board, i: i+1, j: j-1)
+//                    neighbors += checkCell(&board, i: i+1, j: j)
+//                    neighbors += checkCell(&board, i: i+1, j: j+1)
+//
+//                    if neighbors == 3{
+//                        board[i][j]  = 999999
+//                    }
+////                    print("bad",neighbors)
+////                    print("")
+//                }
+//            }
+//        }
+//
+//
+////        print(board)
+//        for i in 0..<column{
+//            for j in 0..<row{
+//                if board[i][j] == 666666{
+//                    board[i][j] = 0
+//                }else if board[i][j] == 999999{
+//                    board[i][j] = 1
+//                }
+//            }
+//        }
+//        return board
+//    }
+//
+//    func checkCell(_ board: inout [[Int]], i:Int, j:Int) -> Int{
+//        if i < 0 || i >= board.count || j < 0 || j >= board[0].count {
+//            return 0
+//        }
+//        if board[i][j] == 0 || board[i][j] == 999999{// will live but still dead
+//            return 0
+//        }
+//        return 1
+//    }
+//
+//
+//
+//}
 
-                    neighbors += checkCell(&board, i: i-1, j: j-1)
-                    neighbors += checkCell(&board, i: i-1, j: j)
-                    neighbors += checkCell(&board, i: i-1, j: j+1)
-                    neighbors += checkCell(&board, i: i, j: j-1)
-                    neighbors += checkCell(&board, i: i, j: j+1)
-                    neighbors += checkCell(&board, i: i+1, j: j-1)
-                    neighbors += checkCell(&board, i: i+1, j: j)
-                    neighbors += checkCell(&board, i: i+1, j: j+1)
-                    
-                    if neighbors == 3{
-                        board[i][j]  = 999999
+
+
+class Solution {
+    let neighbors = [(0, -1),(0, 1),(1, 0),
+                     (-1, 0), (1, 1),  (1, -1), (-1, 1),(-1, -1)]
+
+    func gameOfLife(_ board: inout [[Int]]) -> [[Int]]{
+        if board.count == 0{
+            return [[]]
+        }
+
+//        print(countLives(board, i: 0, j: 1))
+//        print(board.count)
+        for i in 0..<board.count{
+            for j in 0..<board[0].count{
+                if board[i][j] == 1{
+                    let lives = countLives(board,i: i,j: j)
+                    print("good",lives)
+                    if lives<2 || lives>3{
+                        board[i][j] = 66666
                     }
-//                    print("bad",neighbors)
-//                    print("")
                 }
+ 
+                if board[i][j] == 0{
+                    let lives = countLives(board,i: i,j: j)
+//                    print("bad",lives)
+                    if lives == 3{
+                        board[i][j] = 99999
+                    }
+                }
+
+//                print(board)
             }
+
         }
         
-        
-//        print(board)
-        for i in 0..<column{
-            for j in 0..<row{
-                if board[i][j] == 666666{
+        // update the board
+        for i in 0..<board.count{
+            for j in 0..<board[0].count{
+                if board[i][j] == 66666{
                     board[i][j] = 0
-                }else if board[i][j] == 999999{
+                }else if board[i][j] == 99999{
                     board[i][j] = 1
                 }
             }
         }
+        
         return board
     }
     
-    func checkCell(_ board: inout [[Int]], i:Int, j:Int) -> Int{
-        if i < 0 || i >= board.count || j < 0 || j >= board[0].count {
-            return 0
-        }
-        if board[i][j] == 0 || board[i][j] == 999999{// will live but still dead
-            return 0
-        }
-        return 1
-    }
-
     
+    func countLives(_ board:  [[Int]], i:Int,j:Int)->Int{
+        var result = 0
+        
+        for dir in neighbors{
+//            print(dir)
+            let I = i + dir.0
+            let J = j + dir.1
+//            print(I,J)
+            
+            if I >= 0 && I<board.count && J>=0 && J<board[0].count && (board[I][J] == 1 || board[I][J] == 66666){
+//                print(I,J)
+
+                result+=1
+            }
+            
+        }
+        
+        return result
+    }
     
 }
-
-
 
 let solution = Solution()
 var arr = [
