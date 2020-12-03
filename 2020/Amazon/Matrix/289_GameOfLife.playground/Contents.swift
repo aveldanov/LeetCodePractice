@@ -33,14 +33,14 @@
 
 
 class Solution {
-    func gameOfLife(_ board:  [[Int]]) -> [[Int]]{
+    func gameOfLife(_ board: inout [[Int]]) -> [[Int]]{
         let column = board.count
         let row = board[0].count
-        var board = board
+//        var board = board
         for i in 0..<column{
             for j in 0..<row {
                 if board[i][j] == 1{
-                    print("good",board)
+//                    print("good",board)
                     var neighbors = 0
                     neighbors += checkCell(&board, i: i-1, j: j-1)
                     neighbors += checkCell(&board, i: i-1, j: j)
@@ -50,15 +50,15 @@ class Solution {
                     neighbors += checkCell(&board, i: i+1, j: j-1)
                     neighbors += checkCell(&board, i: i+1, j: j)
                     neighbors += checkCell(&board, i: i+1, j: j+1)
-
+                    
                     if neighbors < 2 || neighbors > 3{
                         board[i][j]  = 666666 //dies
                     }
                     print("good",neighbors)
-                    print("")
+//                    print("")
                 }else{
                     var neighbors = 0
-                    print("bad",board)
+//                    print("bad",board)
 
                     neighbors += checkCell(&board, i: i-1, j: j-1)
                     neighbors += checkCell(&board, i: i-1, j: j)
@@ -72,14 +72,14 @@ class Solution {
                     if neighbors == 3{
                         board[i][j]  = 999999
                     }
-                    print("bad",neighbors)
-                    print("")
+//                    print("bad",neighbors)
+//                    print("")
                 }
             }
         }
         
         
-        print(board)
+//        print(board)
         for i in 0..<column{
             for j in 0..<row{
                 if board[i][j] == 666666{
@@ -109,11 +109,11 @@ class Solution {
 
 
 let solution = Solution()
-
-print(solution.gameOfLife([
+var arr = [
     [0,1,0],
     [0,0,1],
     [1,1,1],
     [0,0,0]
-  ]))
+  ]
+print(solution.gameOfLife(&arr))
 
