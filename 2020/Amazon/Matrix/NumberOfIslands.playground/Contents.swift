@@ -65,7 +65,7 @@ class Solution {
 
 let solution = Solution()
 
-print(solution.numIslands([["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]))
+print(solution.numIslands([["1j >reutn","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]))
 
 
 //class Solution {
