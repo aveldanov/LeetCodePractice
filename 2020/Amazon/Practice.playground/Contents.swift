@@ -1,39 +1,71 @@
-func matrix(_ realted:[String])->Int{
+class ListNode<T>{
+    var next: ListNode<T>?
+    var value: T
     
-    var matrix = [[Int]]()
-    
-    var count = 0
-    var users = 0
-    
-    for item in realted{
-        
-//        print(item)
-        var arr : [Int] = []
-        for each in item{
-            
-//            print(each)
-            arr.append(Int(String(each))!)
-        }
-        matrix.append(arr)
+    init( value: T, next: ListNode<T>?) {
+        self.value = value
+        self.next = next
     }
-    
-    for i in 0..<matrix.count{
-        for j in 0..<matrix[0].count{
-            
-            
-            
-        }
-    }
-    
-//    if users != 0 {
-//        count = count - 1
-//    }
-    
-    print(count, users)
-    return count
 }
-matrix(["1100","1110","0110","0001"])
 
 
-//matrix(["10000","01000","00100","00010","00001"])
-//matrix(["110","010","001"])
+
+class LinkedList<T>{
+    var head: ListNode<T>?
+    
+    func displayList(){
+        var current = head
+        
+        while current != nil {
+            print(current?.value ?? "")
+            current = current?.next
+        }
+    }
+    
+    func push(_ value: T){
+        if head == nil{
+            head = ListNode(value: value, next: nil)
+            return
+        }
+        
+        var current = head
+        
+        while current != nil {
+            current = current?.next
+        }
+        
+        head = ListNode(value:value, next: head)
+    }
+    
+    
+    func reverseList(){
+        var current = head
+        var prev: ListNode<T>?
+        var next: ListNode<T>?
+        
+        
+//        nil<-3->2->1->nil
+        
+        while current != nil {
+            next = current?.next
+            current?.next = prev
+            prev = current
+            current = next
+        }
+        
+        
+    }
+    
+    }
+
+
+
+
+let linkedList = LinkedList<Int>()
+
+
+linkedList.push(3)
+linkedList.push(2)
+linkedList.push(1)
+linkedList.displayList()
+

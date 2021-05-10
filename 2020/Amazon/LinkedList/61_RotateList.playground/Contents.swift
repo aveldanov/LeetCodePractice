@@ -46,8 +46,8 @@ class Solution {
           var head = head
           var count = 1
           var secondCount = 0
-         var current = head
-           var j = 1
+          var current = head
+          var j = 1
           while current?.next != nil {
               current = current?.next
               count+=1

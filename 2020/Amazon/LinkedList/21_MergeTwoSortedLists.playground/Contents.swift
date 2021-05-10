@@ -64,7 +64,7 @@ func displayList(_ head:ListNode?){
 //            head.next = l2!
 //        }
 //
-//        return list
+//        return list.next
 //
 //    }
 //}
